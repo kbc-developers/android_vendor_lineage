@@ -3,7 +3,10 @@ ifeq ($(WITH_LINEAGE_CHARGER),true)
     BOARD_HAL_STATIC_LIBRARIES := libhealthd.lineage
 endif
 
-# QCOM HW crypto
-ifeq ($(TARGET_HW_DISK_ENCRYPTION),true)
-    TARGET_CRYPTFS_HW_PATH ?= vendor/qcom/opensource/cryptfs_hw
+include vendor/lineage/config/BoardConfigKernel.mk
+
+ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
+include vendor/lineage/config/BoardConfigQcom.mk
 endif
+
+include vendor/lineage/config/BoardConfigSoong.mk
